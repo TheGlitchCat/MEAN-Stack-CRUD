@@ -1,0 +1,55 @@
+<div class="container">
+    <div class="row">
+        <div class="col s5">
+            <div class="card">
+                <div class="card-content">
+                    <form #studentFrom="ngForm" (ngSubmit)="addStudent(studentFrom)">
+                        <div class="row">
+                            <div class="input-field col s12">
+
+                                <input type="hidden" name="_id" #_id="ngModel" 
+                                [(ngModel)]="StudentService.selectedStudent._id">
+
+                                <input type="text" name="name" #name="ngModel" 
+                                [(ngModel)]="StudentService.selectedStudent.name"
+                                placeholder="Enter a Name">
+
+                                <input type="text" name="surname" #name="ngModel" 
+                                [(ngModel)]="StudentService.selectedStudent.surname"
+                                placeholder="Enter a Name">
+                                
+                                <div class="card-action">
+                                    <div class="input-field col s12">
+                                        <button class="btn right" (click)="resetForm(studentFrom)">Clean</button>
+                                        <button class="btn right" style="margin-right: 2px;">Save</button>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="col s7">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Surname</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let student of StudentService.students">
+                        <td>{{student.name}}</td>
+                        <td>{{student.surname}}</td>
+                        <td (click)="editStudent(student)"><i class="material-icons">edit</i></td>
+                        <td (click)="deleteStudent(student._id)"><i class="material-icons">delete</i></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+</div>
